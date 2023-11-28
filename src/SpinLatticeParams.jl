@@ -1,3 +1,5 @@
+export SpinLatticeParams
+
 using AutomaticDocstrings
 
 """
@@ -150,3 +152,24 @@ function Base.show(io::IO, slp::SpinLatticeParams)
         println(io, quad_str(slp))
     end
 end
+
+# small helper functions about the sipn lattice system
+dimless_energy_2_ghz(E::Number) = 100.0 * E
+
+ghz_2_dimless_energy(ghz::Number) = ghz / 100.0
+
+"""
+    ghz_2_period(ghz::Number)
+
+Calculate the peroid from the Ghz number. Note for the 100.0, this is I use 
+    1 dimensionless energy unit = 100 GHz 
+to make some comparison with the experiment people.
+"""
+ghz_2_period(ghz::Number) = π * 2.0 * 100. / ghz
+
+"""
+    ghz_2_period(ghz::AbstractString)
+
+Calculate the peroid from the GHZ string.
+"""
+ghz_2_period(ghz::AbstractString) = get_period(parse(Float64, ghz))

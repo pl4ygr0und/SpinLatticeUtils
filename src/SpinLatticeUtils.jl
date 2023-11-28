@@ -2,8 +2,11 @@ module SpinLatticeUtils
 
 using HDF5
 using DelimitedFiles
-using Interpolations, QuadGK
+using Romberg
+# using Interpolations, QuadGK
 
-include("numerical_integration_utils.jl")
+include("files.jl")
+include("SpinLatticeParams.jl")
+include("kernel_integration.jl")
 
 end
