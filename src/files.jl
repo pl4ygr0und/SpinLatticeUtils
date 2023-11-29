@@ -1,10 +1,10 @@
 # Conventions about the file systems that is used to organize the data
 
 export get_ghz_value,
-       get_T_value,
-       get_temperature_value,
-       get_λ_value,
-       get_lmd_value
+    get_T_value,
+    get_temperature_value,
+    get_λ_value,
+    get_lmd_value
 
 """
     get_extension(filedir)
@@ -81,3 +81,31 @@ Alias for get_temperature_value. This exist for old data.
 get_T_value(dir) = get_temperature_value(dir)
 
 get_lmd_value(dir) = get_λ_value(dir)
+
+function generate_hash_key(params...)
+    # Concatenate all parameters into a tuple
+    param_tuple = tuple(params...)
+    # Generate hash from the tuple
+    return hash(param_tuple)
+end
+
+function map_params_to_T1!(mapping, T1, params...)
+    hash_key = generate_hash_key(params...)
+    mapping[hash_key] = Dict("params" => params, "T1" => T1)
+end
+
+function get_T1_from_params(mapping, params...)
+    hash_key = generate_hash_key(params...)
+    if haskey(mapping, hash_key)
+        if haskey(mapping[hash_key], "T1")
+            return mapping[hash_key]["T1"]
+        else
+            # Raise an error if the "T1" value is not computed for the parameters
+            error_msg = "The T1 value for parameter set $params is not computed."
+            throw(DomainError(error_msg))
+        end
+    else
+        # Handle the case where the params are not found in the mapping
+        error("Parameters not found in the mapping. $(hash_key)")
+    end
+end
