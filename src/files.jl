@@ -91,7 +91,8 @@ end
 
 function map_params_to_T1!(mapping, T1, params...)
     hash_key = generate_hash_key(params...)
-    mapping[hash_key] = Dict("params" => params, "T1" => T1)
+    param_tuple = tuple(params...)
+    mapping[hash_key] = Dict("params" => param_tuple, "T1" => T1)
 end
 
 function get_T1_from_params(mapping, params...)
