@@ -114,7 +114,7 @@ function calculate_T1(
     println("T1 time is: ", T1, ".")
     println()
 
-    return T1
+    return k_1_gets_0, k_0_gets_1, T1
 end
 
 # function calculate_T1(x_data_dmd, y_data_dmd, x_data_org, y_data_org)
