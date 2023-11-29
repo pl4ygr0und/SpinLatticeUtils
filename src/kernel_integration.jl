@@ -107,8 +107,8 @@ function calculate_T1(
     k_0_gets_1, error_0_gets_1 = compute_k(t_0_gets_1_data, K_0_gets_1_data)
 
     println("="^10, " ", "Numerical integration error: ", "="^10)
-    println("Error for k_{1 \gets 0} is ", error_1_gets_0, ".")
-    println("Error for k_{0 \gets 1} is ", error_0_gets_1, ".")
+    println("Error for k_{1 \\gets 0} is ", error_1_gets_0, ".")
+    println("Error for k_{0 \\gets 1} is ", error_0_gets_1, ".")
     k_tot = k_1_gets_0 + k_0_gets_1
     T1 = 1.0 / k_tot
     println("T1 time is: ", T1, ".")
